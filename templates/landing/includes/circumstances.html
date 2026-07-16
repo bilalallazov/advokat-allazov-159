@@ -1,0 +1,68 @@
+<section id="circumstances" class="relative py-20 md:py-28 bg-panel/40">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="text-gold text-sm font-semibold tracking-wide uppercase mb-3" data-aos="fade-up">Суд</p>
+    <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight mb-4" data-aos="fade-up" data-aos-delay="50">
+      Обстоятельства, влияющие на наказание
+    </h2>
+    <p class="text-sm text-gold/80 mb-12 md:mb-16" data-aos="fade-up" data-aos-delay="80">
+      Нажмите на пункт, чтобы узнать подробнее
+    </p>
+
+    <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
+      <article class="glass-card rounded-glass p-7 md:p-9" data-aos="fade-up" data-aos-delay="80">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-2xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+            <i data-lucide="shield-plus" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-display font-bold text-2xl">Смягчающие</h3>
+        </div>
+        <div class="space-y-3">
+          {% for item in mitigating %}
+          <button
+            type="button"
+            class="info-trigger w-full flex items-start gap-3 rounded-2xl border border-white/5 bg-white/[0.03] p-3.5 text-left hover:border-emerald-400/30 transition"
+            data-detail-target="detail-mitigating-{{ forloop.counter0 }}"
+          >
+            <span class="shrink-0 w-6 h-6 rounded-lg bg-emerald-500/15 text-emerald-400 flex items-center justify-center mt-0.5">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            </span>
+            <span class="text-white/90 flex-1">{{ item.title }}</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-mute shrink-0 mt-1"></i>
+          </button>
+          {% endfor %}
+        </div>
+      </article>
+
+      <article class="glass-card rounded-glass p-7 md:p-9" data-aos="fade-up" data-aos-delay="140">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-11 h-11 rounded-2xl bg-rose-500/15 text-rose-400 flex items-center justify-center">
+            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-display font-bold text-2xl">Отягчающие</h3>
+        </div>
+        <div class="space-y-3">
+          {% for item in aggravating %}
+          <button
+            type="button"
+            class="info-trigger w-full flex items-start gap-3 rounded-2xl border border-white/5 bg-white/[0.03] p-3.5 text-left hover:border-rose-400/30 transition"
+            data-detail-target="detail-aggravating-{{ forloop.counter0 }}"
+          >
+            <span class="shrink-0 w-6 h-6 rounded-lg bg-rose-500/15 text-rose-400 flex items-center justify-center mt-0.5">
+              <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+            </span>
+            <span class="text-white/90 flex-1">{{ item.title }}</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-mute shrink-0 mt-1"></i>
+          </button>
+          {% endfor %}
+        </div>
+      </article>
+    </div>
+
+    {% for item in mitigating %}
+      {% include "landing/includes/detail_panel.html" with item=item prefix="mitigating" index=forloop.counter0 %}
+    {% endfor %}
+    {% for item in aggravating %}
+      {% include "landing/includes/detail_panel.html" with item=item prefix="aggravating" index=forloop.counter0 %}
+    {% endfor %}
+  </div>
+</section>

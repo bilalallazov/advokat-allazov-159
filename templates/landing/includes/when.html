@@ -1,0 +1,41 @@
+<section id="when" class="relative py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="text-gold text-sm font-semibold tracking-wide uppercase mb-3" data-aos="fade-up">Срочность</p>
+    <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight mb-4 max-w-2xl" data-aos="fade-up" data-aos-delay="50">
+      Когда обращаться к адвокату
+    </h2>
+    <p class="text-mute max-w-xl mb-4" data-aos="fade-up" data-aos-delay="80">
+      Чем раньше подключён защитник, тем больше возможностей сохранить свободу и репутацию.
+    </p>
+    <p class="text-sm text-gold/80 mb-12 md:mb-16" data-aos="fade-up" data-aos-delay="100">
+      Нажмите на ситуацию для подробной инструкции
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {% for card in when_cards %}
+      <button
+        type="button"
+        class="info-trigger glass-card rounded-glass p-6 md:p-7 flex items-start gap-4 text-left w-full group"
+        data-aos="fade-up"
+        data-aos-delay="{{ card.delay }}"
+        data-detail-target="detail-when-{{ forloop.counter0 }}"
+      >
+        <span class="shrink-0 w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center group-hover:bg-gold/25 transition">
+          <i data-lucide="check" class="w-5 h-5"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-semibold text-lg">{{ card.title }}</h3>
+          <p class="text-sm text-mute mt-2">{{ card.summary }}</p>
+          <p class="text-xs text-gold mt-3 flex items-center gap-1">
+            Подробнее <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </p>
+        </div>
+      </button>
+      {% endfor %}
+    </div>
+
+    {% for card in when_cards %}
+      {% include "landing/includes/detail_panel.html" with item=card prefix="when" index=forloop.counter0 %}
+    {% endfor %}
+  </div>
+</section>

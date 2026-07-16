@@ -1,0 +1,112 @@
+<section id="contacts" class="relative py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="glass-card rounded-glass p-8 md:p-12 lg:p-14 overflow-hidden relative">
+      <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -left-20 w-80 h-80 rounded-full bg-gold/5 blur-3xl pointer-events-none"></div>
+
+      <div class="relative grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div class="lg:col-span-5" data-aos="fade-up">
+          <p class="text-gold text-sm font-semibold tracking-wide uppercase mb-3">Контакты</p>
+          <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight mb-3">
+            Получите консультацию
+          </h2>
+          <p class="font-display text-lg text-white/90 font-semibold mb-3">
+            {{ site.lawyer_title }} {{ site.lawyer_name }}
+          </p>
+          <p class="text-mute max-w-md leading-relaxed mb-8">
+            Опишите ситуацию — ответим оперативно и подскажем первые шаги защиты.
+          </p>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-1 gap-3">
+            <a href="tel:{{ site.phone_raw }}" class="contact-link rounded-[20px] border border-white/10 bg-white/5 p-4 hover:border-gold/40 transition flex items-center gap-4">
+              <span class="w-11 h-11 rounded-2xl bg-gold/10 text-gold flex items-center justify-center shrink-0">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </span>
+              <div>
+                <p class="text-xs text-mute uppercase tracking-wide">Телефон</p>
+                <p class="font-medium mt-0.5">{{ site.phone }}</p>
+              </div>
+            </a>
+            <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener" class="contact-link rounded-[20px] border border-white/10 bg-white/5 p-4 hover:border-gold/40 transition flex items-center gap-4">
+              <span class="w-11 h-11 rounded-2xl bg-gold/10 text-gold flex items-center justify-center shrink-0">
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+              </span>
+              <div>
+                <p class="text-xs text-mute uppercase tracking-wide">WhatsApp</p>
+                <p class="font-medium mt-0.5">{{ site.phone }}</p>
+              </div>
+            </a>
+            <a href="{{ site.telegram }}" target="_blank" rel="noopener" class="contact-link rounded-[20px] border border-white/10 bg-white/5 p-4 hover:border-gold/40 transition flex items-center gap-4">
+              <span class="w-11 h-11 rounded-2xl bg-gold/10 text-gold flex items-center justify-center shrink-0">
+                <i data-lucide="send" class="w-5 h-5"></i>
+              </span>
+              <div>
+                <p class="text-xs text-mute uppercase tracking-wide">Telegram</p>
+                <p class="font-medium mt-0.5">@advokatallazov</p>
+              </div>
+            </a>
+            <a href="mailto:{{ site.email }}" class="contact-link rounded-[20px] border border-white/10 bg-white/5 p-4 hover:border-gold/40 transition flex items-center gap-4">
+              <span class="w-11 h-11 rounded-2xl bg-gold/10 text-gold flex items-center justify-center shrink-0">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </span>
+              <div>
+                <p class="text-xs text-mute uppercase tracking-wide">Email</p>
+                <p class="font-medium mt-0.5">{{ site.email }}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7" data-aos="fade-up" data-aos-delay="100">
+          <form method="post" action="{% url 'landing:home' %}#contacts" class="consult-form" novalidate>
+            {% csrf_token %}
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+                <label for="{{ form.name.id_for_label }}" class="form-label">{{ form.name.label }}</label>
+                {{ form.name }}
+                {% for error in form.name.errors %}
+                <p class="form-error">{{ error }}</p>
+                {% endfor %}
+              </div>
+              <div class="form-group {% if form.phone.errors %}has-error{% endif %}">
+                <label for="{{ form.phone.id_for_label }}" class="form-label">{{ form.phone.label }}</label>
+                {{ form.phone }}
+                {% for error in form.phone.errors %}
+                <p class="form-error">{{ error }}</p>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="form-group mt-4 {% if form.email.errors %}has-error{% endif %}">
+              <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+              {{ form.email }}
+              {% for error in form.email.errors %}
+              <p class="form-error">{{ error }}</p>
+              {% endfor %}
+            </div>
+            <div class="form-group mt-4 {% if form.message.errors %}has-error{% endif %}">
+              <label for="{{ form.message.id_for_label }}" class="form-label">{{ form.message.label }}</label>
+              {{ form.message }}
+              {% for error in form.message.errors %}
+              <p class="form-error">{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% if form.non_field_errors %}
+            <div class="mt-4">
+              {% for error in form.non_field_errors %}
+              <p class="form-error">{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
+            <button type="submit" class="mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-[20px] bg-gold text-ink font-semibold px-8 py-4 text-base hover:brightness-110 transition shadow-gold">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              Получить консультацию
+            </button>
+            <p class="mt-4 text-xs text-mute leading-relaxed max-w-md">
+              Нажимая кнопку, вы соглашаетесь на обработку персональных данных для связи по заявке.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

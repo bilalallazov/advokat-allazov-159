@@ -1,0 +1,57 @@
+<section id="about" class="relative py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="flex items-center gap-3 mb-4" data-aos="fade-up">
+      <div class="w-12 h-12 rounded-2xl bg-gold/10 border border-gold/20 flex items-center justify-center">
+        <i data-lucide="scale" class="w-6 h-6 text-gold"></i>
+      </div>
+      <p class="text-gold text-sm font-semibold tracking-wide uppercase">Статья 159</p>
+    </div>
+    <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight mb-10 md:mb-14 max-w-3xl" data-aos="fade-up" data-aos-delay="50">
+      Что такое мошенничество?
+    </h2>
+
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+      <article class="glass-card rounded-glass p-8 md:p-10 space-y-6" data-aos="fade-up" data-aos-delay="100">
+        <p class="text-lg md:text-xl leading-relaxed text-white/90">
+          {{ about_lead }}
+        </p>
+        <div class="pt-2 border-t border-white/8">
+          <p class="text-gold font-display font-semibold mb-2">Обман</p>
+          <p class="text-mute leading-relaxed">{{ about_deceit }}</p>
+        </div>
+        <div>
+          <p class="text-gold font-display font-semibold mb-2">Злоупотребление доверием</p>
+          <p class="text-mute leading-relaxed">{{ about_trust }}</p>
+        </div>
+      </article>
+
+      <aside class="glass-card rounded-glass p-8 md:p-10 flex flex-col justify-center" data-aos="fade-up" data-aos-delay="150">
+        <p class="text-sm text-gold/80 mb-6">Нажмите на этап схемы</p>
+        <div class="infographic">
+          {% for step in infographic %}
+          <button
+            type="button"
+            class="info-trigger infographic-step text-left w-full rounded-2xl p-2 -mx-2 hover:bg-white/5 transition"
+            data-detail-target="detail-info-{{ forloop.counter0 }}"
+          >
+            <div class="infographic-icon">
+              <i data-lucide="{{ step.icon }}" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <p class="font-display font-semibold text-lg">{{ step.title }}</p>
+              <p class="text-sm text-mute mt-1">{{ step.description }}</p>
+            </div>
+          </button>
+          {% if not forloop.last %}
+          <div class="infographic-line" aria-hidden="true"></div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </aside>
+    </div>
+
+    {% for step in infographic %}
+      {% include "landing/includes/detail_panel.html" with item=step prefix="info" index=forloop.counter0 %}
+    {% endfor %}
+  </div>
+</section>

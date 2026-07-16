@@ -1,0 +1,44 @@
+{# Expects: item, prefix, index #}
+<template id="detail-{{ prefix }}-{{ index }}">
+  <div class="detail-content">
+    <div class="detail-icon">
+      <i data-lucide="{{ item.icon|default:'info' }}" class="w-6 h-6"></i>
+    </div>
+    <h3 class="detail-title" id="info-modal-title">{{ item.title }}</h3>
+    {% if item.highlight %}
+    <p class="detail-highlight">{{ item.highlight }}{% if item.caption %} <span>{{ item.caption }}</span>{% endif %}</p>
+    {% endif %}
+    {% if item.summary %}
+    <p class="detail-summary">{{ item.summary }}</p>
+    {% elif item.description %}
+    <p class="detail-summary">{{ item.description }}</p>
+    {% endif %}
+    {% for p in item.paragraphs %}
+    <p class="detail-text">{{ p }}</p>
+    {% endfor %}
+    {% if item.conditions %}
+    <p class="detail-subtitle">Основания</p>
+    <ul class="detail-list">
+      {% for row in item.conditions %}<li>{{ row }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% if item.points %}
+    <p class="detail-subtitle">{{ item.points_title|default:"Что важно знать" }}</p>
+    <ul class="detail-list">
+      {% for row in item.points %}<li>{{ row }}</li>{% endfor %}
+    </ul>
+    {% elif item.items %}
+    <p class="detail-subtitle">Возможные виды наказания</p>
+    <ul class="detail-list">
+      {% for row in item.items %}<li>{{ row }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+    {% if item.note %}
+    <p class="detail-note">{{ item.note }}</p>
+    {% endif %}
+    <a href="#contacts" class="detail-cta" data-modal-close>
+      Получить консультацию
+      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </a>
+  </div>
+</template>

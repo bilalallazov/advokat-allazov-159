@@ -1,0 +1,60 @@
+<section id="process" class="relative py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="text-gold text-sm font-semibold tracking-wide uppercase mb-3" data-aos="fade-up">Процесс</p>
+    <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight mb-4" data-aos="fade-up" data-aos-delay="50">
+      Как проходит работа
+    </h2>
+    <p class="text-mute max-w-xl mb-4" data-aos="fade-up" data-aos-delay="70">
+      Пошаговая схема защиты с адвокатом {{ site.lawyer_name }}
+    </p>
+    <p class="text-sm text-gold/80 mb-12 md:mb-16" data-aos="fade-up" data-aos-delay="90">
+      Нажмите на этап, чтобы узнать подробности
+    </p>
+
+    <div class="timeline relative max-w-2xl mx-auto">
+      <div class="timeline-steps">
+        {% for step in process_steps %}
+        <button
+          type="button"
+          class="info-trigger timeline-item text-left w-full rounded-2xl hover:bg-white/5 transition px-2 -mx-2"
+          data-aos="fade-up"
+          data-aos-delay="{{ forloop.counter0 }}60"
+          data-detail-target="detail-process-{{ forloop.counter0 }}"
+        >
+          <div class="timeline-num">{{ step.number }}</div>
+          <div class="timeline-content">
+            <h3 class="font-display font-semibold text-xl text-white">{{ step.title }}</h3>
+            <p class="text-mute text-sm mt-1">{{ step.description }}</p>
+            <p class="text-xs text-gold mt-2">Подробнее →</p>
+          </div>
+        </button>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% for step in process_steps %}
+    <template id="detail-process-{{ forloop.counter0 }}">
+      <div class="detail-content">
+        <div class="detail-icon">
+          <span class="font-display font-bold text-lg text-ink">{{ step.number }}</span>
+        </div>
+        <h3 class="detail-title" id="info-modal-title">{{ step.title }}</h3>
+        <p class="detail-summary">{{ step.description }}</p>
+        {% for p in step.paragraphs %}
+        <p class="detail-text">{{ p }}</p>
+        {% endfor %}
+        {% if step.points %}
+        <p class="detail-subtitle">Что входит</p>
+        <ul class="detail-list">
+          {% for row in step.points %}<li>{{ row }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        <a href="#contacts" class="detail-cta" data-modal-close>
+          Получить консультацию
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </template>
+    {% endfor %}
+  </div>
+</section>

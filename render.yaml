@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: advokat-allazov-159
+    runtime: python
+    plan: free
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://*.onrender.com"
+      - key: SITE_PHONE
+        value: "+7 (926) 122-31-33"
+      - key: SITE_PHONE_RAW
+        value: "+79261223133"
+      - key: SITE_WHATSAPP
+        value: "79261223133"
+      - key: SITE_TELEGRAM
+        value: "https://t.me/advokatallazov"
+      - key: SITE_EMAIL
+        value: "Allazov009@mail.ru"
+      - key: SITE_LAWYER_NAME
+        value: "Аллазов Мансур Анварович"
+      - key: SITE_LAWYER_TITLE
+        value: "Адвокат"

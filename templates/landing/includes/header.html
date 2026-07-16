@@ -1,0 +1,28 @@
+<header class="fixed top-0 inset-x-0 z-50 transition-all duration-300" id="site-header">
+  <div class="mx-auto max-w-7xl px-5 md:px-8 h-16 md:h-20 flex items-center justify-between gap-4">
+    <a href="{% url 'landing:home' %}#hero" class="font-display font-bold text-lg md:text-xl tracking-tight shrink-0 leading-tight">
+      <span class="text-gold">{{ site.lawyer_title }}</span>
+      <span class="block text-sm md:text-base font-semibold text-white/90">{{ site.lawyer_name }}</span>
+    </a>
+    <nav class="hidden xl:flex items-center gap-6 text-sm text-mute">
+      <a href="#about" class="hover:text-white transition">О статье</a>
+      <a href="#cases" class="hover:text-white transition">Случаи</a>
+      <a href="#corpus" class="hover:text-white transition">Состав</a>
+      <a href="#penalty" class="hover:text-white transition">Наказание</a>
+      <a href="#advice" class="hover:text-white transition">Что делать</a>
+      <a href="#faq" class="hover:text-white transition">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-sm text-white hover:border-gold/40 transition" title="WhatsApp">
+        <i data-lucide="message-circle" class="w-4 h-4 text-gold"></i>
+        <span class="hidden md:inline">WhatsApp</span>
+      </a>
+      <a href="tel:{{ site.phone_raw }}" class="hidden lg:inline-flex text-sm font-medium text-gold hover:brightness-110 transition">
+        {{ site.phone }}
+      </a>
+      <a href="#contacts" class="inline-flex items-center gap-2 rounded-full bg-gold text-ink font-semibold text-sm px-4 sm:px-5 py-2.5 hover:brightness-110 transition">
+        Консультация
+      </a>
+    </div>
+  </div>
+</header>

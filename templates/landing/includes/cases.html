@@ -1,0 +1,41 @@
+<section id="cases" class="relative py-20 md:py-28 bg-panel/40">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="text-gold text-sm font-semibold tracking-wide uppercase mb-3" data-aos="fade-up">Практика</p>
+    <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight mb-4 max-w-3xl" data-aos="fade-up" data-aos-delay="50">
+      Какие действия могут считаться мошенничеством?
+    </h2>
+    <p class="text-mute max-w-2xl mb-4" data-aos="fade-up" data-aos-delay="80">
+      К наиболее распространённым случаям относятся:
+    </p>
+    <p class="text-sm text-gold/80 mb-12 md:mb-16" data-aos="fade-up" data-aos-delay="100">
+      Нажмите на карточку, чтобы открыть подробное разъяснение
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      {% for case in fraud_cases %}
+      <button
+        type="button"
+        class="info-trigger glass-card rounded-glass p-5 md:p-6 flex items-start gap-4 text-left w-full group"
+        data-aos="fade-up"
+        data-aos-delay="{% widthratio forloop.counter0 1 40 %}"
+        data-detail-target="detail-case-{{ forloop.counter0 }}"
+      >
+        <span class="shrink-0 w-10 h-10 rounded-xl bg-gold/15 text-gold flex items-center justify-center group-hover:bg-gold/25 transition">
+          <i data-lucide="{{ case.icon }}" class="w-5 h-5"></i>
+        </span>
+        <div class="min-w-0 flex-1">
+          <h3 class="font-display font-semibold text-base md:text-lg leading-snug">{{ case.title }}</h3>
+          <p class="text-xs text-mute mt-2 flex items-center gap-1 group-hover:text-gold transition">
+            Подробнее
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </p>
+        </div>
+      </button>
+      {% endfor %}
+    </div>
+
+    {% for case in fraud_cases %}
+      {% include "landing/includes/detail_panel.html" with item=case prefix="case" index=forloop.counter0 %}
+    {% endfor %}
+  </div>
+</section>

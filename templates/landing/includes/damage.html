@@ -1,0 +1,39 @@
+<section id="damage" class="relative py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="text-gold text-sm font-semibold tracking-wide uppercase mb-3" data-aos="fade-up">Квалификация</p>
+    <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight mb-4" data-aos="fade-up" data-aos-delay="50">
+      Размер ущерба
+    </h2>
+    <p class="text-mute max-w-2xl mb-4" data-aos="fade-up" data-aos-delay="80">
+      {{ damage_note }}
+    </p>
+    <p class="text-sm text-gold/80 mb-12 md:mb-16" data-aos="fade-up" data-aos-delay="100">
+      Нажмите на карточку для разъяснения
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-5 md:gap-6">
+      {% for item in damage_types %}
+      <button
+        type="button"
+        class="info-trigger glass-card rounded-glass p-7 md:p-8 text-center md:text-left w-full group"
+        data-aos="fade-up"
+        data-aos-delay="{{ forloop.counter0 }}80"
+        data-detail-target="detail-damage-{{ forloop.counter0 }}"
+      >
+        <div class="w-12 h-12 mx-auto md:mx-0 rounded-2xl bg-gold/10 flex items-center justify-center text-gold mb-5 group-hover:bg-gold/20 transition">
+          <i data-lucide="{{ item.icon }}" class="w-6 h-6"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl mb-3">{{ item.title }}</h3>
+        <p class="text-mute leading-relaxed">{{ item.summary }}</p>
+        <p class="text-xs text-gold mt-4 flex items-center justify-center md:justify-start gap-1">
+          Подробнее <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </p>
+      </button>
+      {% endfor %}
+    </div>
+
+    {% for item in damage_types %}
+      {% include "landing/includes/detail_panel.html" with item=item prefix="damage" index=forloop.counter0 %}
+    {% endfor %}
+  </div>
+</section>
