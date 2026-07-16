@@ -952,7 +952,7 @@ INFOGRAPHIC: tuple[InfographicStep, ...] = (
 ADVANTAGES: tuple[Advantage, ...] = (
     Advantage(
         'counter',
-        '+ лет практики',
+        'лет практики',
         'Опыт по экономическим и уголовным делам',
         value=16,
         delay=0,

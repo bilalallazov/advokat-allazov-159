@@ -56,7 +56,7 @@
           {% endif %}
         </div>
         <h3 class="detail-title" id="info-modal-title">
-          {% if item.kind == 'counter' %}{{ item.value }}{{ item.title }}{% else %}{{ item.title }}{% endif %}
+          {% if item.kind == 'counter' %}{{ item.value }} {{ item.title }}{% else %}{{ item.title }}{% endif %}
         </h3>
         <p class="detail-summary">{{ item.description }}</p>
         {% for p in item.paragraphs %}
