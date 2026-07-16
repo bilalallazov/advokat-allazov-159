@@ -1,5 +1,16 @@
-<section id="hero" class="relative min-h-screen flex items-end md:items-center overflow-hidden">
-  <div class="absolute inset-0 hero-bg" aria-hidden="true"></div>
+{% load static %}
+<section id="hero" class="relative min-h-[100svh] min-h-screen flex items-end md:items-center overflow-hidden">
+  <div class="absolute inset-0 hero-bg" aria-hidden="true">
+    <img
+      src="{% static 'img/hero-justice.png' %}"
+      alt=""
+      class="hero-bg-img"
+      width="1080"
+      height="1920"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </div>
   <div class="absolute inset-0 hero-overlay" aria-hidden="true"></div>
   <div class="absolute inset-0 hero-grain" aria-hidden="true"></div>
 

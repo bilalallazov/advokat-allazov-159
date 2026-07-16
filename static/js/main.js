@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    if (document.querySelector('.hero-bg')) {
-      gsap.to('.hero-bg', {
-        yPercent: 12,
+    if (document.querySelector('.hero-bg-img')) {
+      gsap.to('.hero-bg-img', {
+        yPercent: 8,
         ease: 'none',
         scrollTrigger: {
           trigger: '#hero',
