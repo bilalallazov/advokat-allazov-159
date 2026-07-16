@@ -16,19 +16,41 @@ SECRET_KEY = os.getenv(
     'django-insecure-dev-only-change-me-article-159-landing',
 )
 
-DEBUG = os.getenv('DEBUG', 'True').lower() in ('1', 'true', 'yes')
+# Render sets RENDER=true automatically
+ON_RENDER = os.getenv('RENDER', '').lower() in ('1', 'true', 'yes')
+
+DEBUG = os.getenv('DEBUG', 'False' if ON_RENDER else 'True').lower() in ('1', 'true', 'yes')
+
+_default_hosts = '127.0.0.1,localhost'
+if ON_RENDER:
+    _default_hosts = (
+        '127.0.0.1,localhost,.onrender.com,'
+        'advokat-allazov-159.onrender.com'
+    )
 
 ALLOWED_HOSTS = [
     host.strip()
-    for host in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+    for host in os.getenv('ALLOWED_HOSTS', _default_hosts).split(',')
     if host.strip()
 ]
 
+# Always allow Render host even if env vars were forgotten
+for _host in ('.onrender.com', 'advokat-allazov-159.onrender.com'):
+    if _host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(_host)
+
+_default_csrf = (
+    'https://*.onrender.com,https://advokat-allazov-159.onrender.com'
+    if ON_RENDER
+    else ''
+)
+
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
-    for origin in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
+    for origin in os.getenv('CSRF_TRUSTED_ORIGINS', _default_csrf).split(',')
     if origin.strip()
 ]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
