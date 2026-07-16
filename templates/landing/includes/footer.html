@@ -1,6 +1,78 @@
-<footer class="border-t border-white/5 py-8">
-  <div class="mx-auto max-w-7xl px-5 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-mute">
-    <p>© {% now "Y" %} {{ site.lawyer_title }} {{ site.lawyer_name }} — защита по ст. 159 УК РФ</p>
-    <p class="text-center sm:text-right">Информация на сайте не является публичной офертой</p>
+<footer class="site-footer border-t border-white/8 pt-16 pb-8">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12">
+      <div>
+        <p class="font-display font-bold text-lg mb-3">
+          <span class="text-gold">{{ site.lawyer_title }}</span><br />
+          {{ site.lawyer_name }}
+        </p>
+        <p class="text-sm text-mute leading-[1.7] max-w-xs">
+          Защита по уголовным делам о мошенничестве. Ст. 159 УК РФ — консультация, следствие, суд.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-white mb-4">Разделы</p>
+        <ul class="space-y-2.5 text-sm text-mute">
+          <li><a href="#about" class="hover:text-gold transition">О статье</a></li>
+          <li><a href="#penalty" class="hover:text-gold transition">Наказание</a></li>
+          <li><a href="#advice" class="hover:text-gold transition">Что делать</a></li>
+          <li><a href="#reviews" class="hover:text-gold transition">Отзывы</a></li>
+          <li><a href="#faq" class="hover:text-gold transition">FAQ</a></li>
+          <li><a href="#contacts" class="hover:text-gold transition">Контакты</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-white mb-4">Контакты</p>
+        <ul class="space-y-3 text-sm text-mute">
+          <li>
+            <a href="tel:{{ site.phone_raw }}" class="hover:text-gold transition inline-flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4 text-gold"></i> {{ site.phone }}
+            </a>
+          </li>
+          <li>
+            <a href="mailto:{{ site.email }}" class="hover:text-gold transition inline-flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-gold"></i> {{ site.email }}
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener" class="hover:text-gold transition inline-flex items-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4 text-gold"></i> WhatsApp
+            </a>
+          </li>
+          <li>
+            <a href="{{ site.telegram }}" target="_blank" rel="noopener" class="hover:text-gold transition inline-flex items-center gap-2">
+              <i data-lucide="send" class="w-4 h-4 text-gold"></i> @advokatallazov
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-display font-semibold text-white mb-4">Режим работы</p>
+        <ul class="space-y-2.5 text-sm text-mute">
+          <li>Пн–Вс: круглосуточно</li>
+          <li>Срочный выезд 24/7</li>
+          <li>Консультация — по записи</li>
+        </ul>
+        <div class="flex items-center gap-3 mt-5">
+          <a href="https://wa.me/{{ site.whatsapp }}" target="_blank" rel="noopener" class="footer-social" aria-label="WhatsApp">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+          </a>
+          <a href="{{ site.telegram }}" target="_blank" rel="noopener" class="footer-social" aria-label="Telegram">
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </a>
+          <a href="mailto:{{ site.email }}" class="footer-social" aria-label="Email">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-mute">
+      <p>© {% now "Y" %} {{ site.lawyer_title }} {{ site.lawyer_name }}</p>
+      <p class="text-center sm:text-right">Информация на сайте не является публичной офертой</p>
+    </div>
   </div>
 </footer>

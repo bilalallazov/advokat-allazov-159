@@ -19,6 +19,7 @@ from .content import (
     PAGE_INTRO,
     PENALTY_CARDS,
     PROCESS_STEPS,
+    REVIEWS,
     WHEN_CARDS,
 )
 from .forms import ConsultationForm
@@ -52,6 +53,7 @@ class HomeView(FormView):
                 'process_steps': PROCESS_STEPS,
                 'infographic': INFOGRAPHIC,
                 'advantages': ADVANTAGES,
+                'reviews': REVIEWS,
                 'faq_items': get_faq_items(),
             }
         )
@@ -66,6 +68,13 @@ class HomeView(FormView):
             'Заявка отправлена. Мы свяжемся с вами в ближайшее время.',
         )
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(
+            self.request,
+            'Проверьте поля формы — есть ошибки заполнения.',
+        )
+        return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse('landing:home') + '#contacts'

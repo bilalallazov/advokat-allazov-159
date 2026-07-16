@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://advokat-allazov-159.onrender.com/sitemap.xml

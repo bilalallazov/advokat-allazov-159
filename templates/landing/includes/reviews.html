@@ -1,0 +1,30 @@
+<section id="reviews" class="relative py-24 md:py-32 bg-panel/40">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <p class="text-gold text-sm font-semibold tracking-wide uppercase mb-3" data-aos="fade-up">Доверие</p>
+    <h2 class="font-display font-bold text-3xl md:text-5xl tracking-tight mb-4" data-aos="fade-up" data-aos-delay="50">
+      Отзывы доверителей
+    </h2>
+    <p class="text-mute max-w-xl mb-14 md:mb-16 leading-[1.7]" data-aos="fade-up" data-aos-delay="80">
+      Реальные ситуации, с которыми к нам обращаются по статье 159 УК РФ.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-5 md:gap-6">
+      {% for name, text, place in reviews %}
+      <article class="glass-card rounded-[20px] p-7 md:p-8 flex flex-col" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}80">
+        <div class="stars-row flex items-center gap-1 mb-5" aria-label="5 из 5">
+          <i data-lucide="star" class="w-4 h-4 text-gold"></i>
+          <i data-lucide="star" class="w-4 h-4 text-gold"></i>
+          <i data-lucide="star" class="w-4 h-4 text-gold"></i>
+          <i data-lucide="star" class="w-4 h-4 text-gold"></i>
+          <i data-lucide="star" class="w-4 h-4 text-gold"></i>
+        </div>
+        <p class="text-white/90 leading-[1.7] flex-1">«{{ text }}»</p>
+        <div class="mt-6 pt-5 border-t border-white/8">
+          <p class="font-display font-semibold">{{ name }}</p>
+          <p class="text-sm text-mute mt-1">{{ place }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

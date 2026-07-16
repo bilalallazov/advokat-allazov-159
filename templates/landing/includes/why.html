@@ -22,7 +22,7 @@
       {% for item in advantages %}
       <button
         type="button"
-        class="info-trigger glass-card rounded-glass p-7 text-left w-full group {% if item.wide %}sm:col-span-2{% endif %}"
+        class="info-trigger glass-card rounded-[20px] p-7 text-left w-full group {% if item.wide %}sm:col-span-2 lg:col-span-3{% endif %}"
         data-aos="fade-up"
         data-aos-delay="{{ item.delay }}"
         data-detail-target="detail-why-{{ forloop.counter0 }}"

@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}Адвокат {{ site.lawyer_name }} — Статья 159 УК РФ Мошенничество{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Адвокат {{ site.lawyer_name }}: защита по ст. 159 УК РФ (мошенничество). Консультация, анализ дела, защита на всех стадиях. Тел. {{ site.phone }}, {{ site.email }}.{% endblock %}" />
+  <meta name="theme-color" content="#0B1220" />
+  <link rel="canonical" href="https://advokat-allazov-159.onrender.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content="Адвокат {{ site.lawyer_name }} — ст. 159 УК РФ" />
+  <meta property="og:description" content="Защита по делам о мошенничестве. Консультация адвоката, анализ материалов, защита на всех стадиях." />
+  <meta property="og:url" content="https://advokat-allazov-159.onrender.com/" />
+  <meta property="og:image" content="https://advokat-allazov-159.onrender.com{% static 'img/hero-bg.png' %}" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="{% static 'img/favicon.svg' %}" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,11 +40,11 @@
             sans: ['Inter', 'Manrope', 'system-ui', 'sans-serif'],
           },
           borderRadius: {
-            glass: '24px',
+            glass: '20px',
           },
           boxShadow: {
-            glass: '0 8px 32px rgba(0,0,0,.35)',
-            gold: '0 0 40px rgba(212,175,55,.15)',
+            glass: '0 12px 40px rgba(0,0,0,.4)',
+            gold: '0 0 40px rgba(212,175,55,.22)',
           },
         },
       },
@@ -40,9 +53,26 @@
 
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Attorney",
+    "name": "{{ site.lawyer_title }} {{ site.lawyer_name }}",
+    "description": "Защита по уголовным делам о мошенничестве (ст. 159 УК РФ)",
+    "url": "https://advokat-allazov-159.onrender.com/",
+    "telephone": "{{ site.phone_raw }}",
+    "email": "{{ site.email }}",
+    "image": "https://advokat-allazov-159.onrender.com{% static 'img/hero-bg.png' %}",
+    "areaServed": "RU",
+    "priceRange": "$$",
+    "openingHours": "Mo-Su 00:00-23:59"
+  }
+  </script>
   {% block extra_head %}{% endblock %}
 </head>
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
+  <a href="#main-content" class="skip-link">Перейти к содержимому</a>
   {% include 'landing/includes/header.html' %}
 
   {% if messages %}
@@ -56,7 +86,7 @@
   </div>
   {% endif %}
 
-  <main>
+  <main id="main-content">
     {% block content %}{% endblock %}
   </main>
 

@@ -3,17 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
-  // AOS
   if (window.AOS) {
     AOS.init({
-      duration: 750,
+      duration: 800,
       easing: 'ease-out-cubic',
       once: true,
-      offset: 80,
+      offset: 70,
+      delay: 0,
     });
   }
 
-  // Sticky header
   const header = document.getElementById('site-header');
   if (header) {
     const onScroll = () => {
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // GSAP hero entrance + parallax
   if (window.gsap) {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -32,16 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(heroItems, {
         opacity: 1,
         y: 0,
-        duration: 0.9,
-        stagger: 0.12,
+        duration: 1,
+        stagger: 0.11,
         ease: 'power3.out',
-        delay: 0.15,
+        delay: 0.12,
       });
     }
 
     if (document.querySelector('.hero-bg-img')) {
       gsap.to('.hero-bg-img', {
-        yPercent: 8,
+        yPercent: 10,
         ease: 'none',
         scrollTrigger: {
           trigger: '#hero',
@@ -58,11 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Counters
+  // CountUp
   const counters = document.querySelectorAll('.counter');
   const animateCounter = (el) => {
     const target = Number(el.dataset.target) || 0;
-    const duration = 1400;
+    const duration = 1600;
     const start = performance.now();
 
     const tick = (now) => {
@@ -86,21 +84,34 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.35 }
     );
     counters.forEach((c) => io.observe(c));
   } else {
     counters.forEach(animateCounter);
   }
 
-  // Toasts
+  // Button ripple
+  document.querySelectorAll('.btn-ripple').forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+      const rect = this.getBoundingClientRect();
+      const circle = document.createElement('span');
+      const size = Math.max(rect.width, rect.height);
+      circle.className = 'ripple';
+      circle.style.width = circle.style.height = `${size}px`;
+      circle.style.left = `${e.clientX - rect.left - size / 2}px`;
+      circle.style.top = `${e.clientY - rect.top - size / 2}px`;
+      this.appendChild(circle);
+      setTimeout(() => circle.remove(), 650);
+    });
+  });
+
   document.querySelectorAll('.toast-close').forEach((btn) => {
     btn.addEventListener('click', () => {
       btn.closest('.toast')?.remove();
     });
   });
 
-  // Scroll to contacts if hash present after form post or form errors
   if (window.location.hash === '#contacts' || document.querySelector('.consult-form .has-error')) {
     const contacts = document.getElementById('contacts');
     if (contacts) {
@@ -108,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Info modal for clickable cards
+  // Modal
   const modal = document.getElementById('info-modal');
   const modalBody = document.getElementById('info-modal-body');
   let lastTrigger = null;
@@ -116,15 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const openModal = (targetId, trigger) => {
     const source = document.getElementById(targetId);
     if (!modal || !modalBody || !source) return;
-
     lastTrigger = trigger || null;
     modalBody.innerHTML = source.innerHTML;
     modal.hidden = false;
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
-
     if (window.lucide) lucide.createIcons();
-
     modal.querySelector('.info-modal__close')?.focus();
   };
 
@@ -136,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('modal-open');
     lastTrigger?.focus();
     lastTrigger = null;
-
     if (scrollToHash && scrollToHash.startsWith('#')) {
       const target = document.querySelector(scrollToHash);
       if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 80);
@@ -160,4 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
   });
+
+  // Form loading state
+  const form = document.querySelector('.consult-form');
+  if (form) {
+    form.addEventListener('submit', () => {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn && form.checkValidity()) {
+        btn.disabled = true;
+        btn.style.opacity = '0.75';
+        btn.innerHTML = 'Отправка…';
+      }
+    });
+  }
 });
